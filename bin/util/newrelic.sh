@@ -27,6 +27,7 @@ if [[ -n "$NEW_RELIC_LICENSE_KEY" ]]; then
         # Perpetually tail and redirect the daemon log file to stderr so that it
         # may be observed via 'heroku logs'.
         touch /tmp/heroku.ext-newrelic.newrelic-daemon.${PORT}.log
+        chmod 777 /tmp/heroku.ext-newrelic.newrelic-daemon.${PORT}.log
         tail -qF -n 0 /tmp/heroku.ext-newrelic.newrelic-daemon.${PORT}.log 1>&2 &
     else
         echo >&2 "WARNING: Add-on 'newrelic' detected, but PHP extension not yet installed. Push an update to the application to finish installation of the add-on; an empty change ('git commit --allow-empty') is sufficient."
