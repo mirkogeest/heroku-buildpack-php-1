@@ -10,7 +10,9 @@ error_log  stderr;
 
 
 events {
-    worker_connections  1024;
+  worker_connections 150000;
+  multi_accept on;
+  use epoll;
 }
 
 
@@ -25,10 +27,10 @@ http {
     #access_log  logs/access.log  main;
 
     sendfile        on;
-    #tcp_nopush     on;
+    tcp_nopush     on;
 
-    #keepalive_timeout  0;
     keepalive_timeout  65;
+    reset_timedout_connection on;
 
     #gzip  on;
 }
